@@ -1,28 +1,30 @@
 module Main where
 
 main :: IO ()
-main = putStrLn "Hello, Haskell!"
+main = putStrLn (show(quicksort([4,3,2,1])))
 
 
-Quicksort :: [Int] -> [Int]
-Quicksort x:[] = [x]
-Quicksort (x:xs) = 
-    let pivot = Pickapivot(x:xs) in 
+quicksort :: [Int] -> [Int]
+quicksort [] = []
+quicksort (x:[]) = [x]
+quicksort (x:xs) = 
         lessthan++equals++greaterthan
         where
-            lessthan = Quicksort [ x | x <- (x:xs), x < pivot]
-            greaterthan = Quicksort [ x | x <- (x:xs), x > pivot]
+            lessthan = quicksort [ x | x <- (x:xs), x < pivot]
+            greaterthan = quicksort [ x | x <- (x:xs), x > pivot]
             equals = [ x | x <- (x:xs), x == pivot]
+            pivot = pickapivot(x:xs)
 
-Quicksort' :: Quicksort :: [Int] -> [Int]
-Quicksort' x:[] = [x]
-Quicksort' (x:xs) = lessthan++[x]++greaterthan
+quicksort' ::  [Int] -> [Int]
+quicksort' (x:[]) = [x]
+quicksort' lon@(x:xs) = lessthan++[x]++greaterthan
     where
-        lessthan = Quicksort [ x | x <- (x:xs), x < pivot]
-        greaterthan = Quicksort [ x | x <- (x:xs), x > pivot]
+        lessthan = quicksort [ y | y <- lon, y < x]
+        greaterthan = quicksort [ y | y <- lon, y > x]
 
-Pickapivot :: [Int] -> Int
-Pickapivot (x:xs) = last xs
+
+pickapivot :: [Int] -> Int
+pickapivot (x:xs) = last xs
 
 
 
