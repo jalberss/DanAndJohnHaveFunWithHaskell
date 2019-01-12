@@ -14,6 +14,13 @@ Quicksort (x:xs) =
             greaterthan = Quicksort [ x | x <- (x:xs), x > pivot]
             equals = [ x | x <- (x:xs), x == pivot]
 
+Quicksort' :: Quicksort :: [Int] -> [Int]
+Quicksort' x:[] = [x]
+Quicksort' (x:xs) = lessthan++[x]++greaterthan
+    where
+        lessthan = Quicksort [ x | x <- (x:xs), x < pivot]
+        greaterthan = Quicksort [ x | x <- (x:xs), x > pivot]
+
 Pickapivot :: [Int] -> Int
 Pickapivot (x:xs) = last xs
 
